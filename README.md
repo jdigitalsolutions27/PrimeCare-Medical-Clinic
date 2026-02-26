@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PrimeCare Medical Clinic Website
 
-## Getting Started
+Premium multi-page medical clinic website + mini patient experience platform built with:
+- Next.js App Router
+- React 18 + TypeScript
+- Tailwind CSS
+- Framer Motion
+- shadcn/ui components
+- React Hook Form + Zod
+- Embla Carousel
 
-First, run the development server:
+## 1) Install and Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build and validate:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## 2) Edit Clinic Branding and Contact Details
 
-To learn more about Next.js, take a look at the following resources:
+Main editable business profile:
+- `data/business.ts`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Update:
+- clinic name / tagline
+- phone, WhatsApp, emails
+- address and hours
+- social links
+- map embed URL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 3) Edit Services, Doctors, Pricing, and Content
 
-## Deploy on Vercel
+Data-driven content files:
+- `data/services.ts` (20+ services with slugs, categories, FAQs, steps)
+- `data/doctors.ts`
+- `data/pricing.ts`
+- `data/testimonials.ts`
+- `data/patientStories.ts`
+- `data/faqs.ts`
+- `data/blog.ts`
+- `data/symptomNavigator.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All pages consume these files directly, so edits appear site-wide.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 4) Replace Images
+
+Placeholder URLs are centralized in:
+- `data/images.ts`
+
+Replace URLs with your own licensed assets. `next/image` is already configured for:
+- `images.unsplash.com`
+- `images.pexels.com`
+
+If you use other domains, add them in:
+- `next.config.mjs`
+
+## 5) Booking and API
+
+Booking flow:
+- `app/appointment/page.tsx`
+- `components/appointment/appointment-wizard.tsx`
+- `app/api/appointments/route.ts`
+- `app/appointment/success/page.tsx`
+
+Current API is a mock route returning:
+- appointment reference number
+- service name
+
+Also supports `.ics` calendar download from the same route (`GET`).
+
+## 6) SEO and Schema
+
+Per-page metadata helper:
+- `lib/metadata.ts`
+
+JSON-LD schema:
+- `lib/schema.ts` (MedicalClinic + Physician)
+
+## 7) Deploy to Vercel
+
+1. Push repository to GitHub/GitLab/Bitbucket  
+2. Import project in Vercel  
+3. Set environment variables if needed:
+   - `NEXT_PUBLIC_SITE_URL` (recommended for absolute metadata URLs)  
+4. Deploy
+
+## 8) Notes
+
+- Symptom Navigator is informational only and not diagnostic.
+- Avoid medical guarantee language in content.
+- For production appointment handling, connect `/api/appointments` to your real backend/EMR workflow.
