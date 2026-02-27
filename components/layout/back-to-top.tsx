@@ -18,7 +18,7 @@ export function BackToTop() {
 
   return (
     <Button
-      className="fixed bottom-24 right-4 z-40 h-11 w-11 rounded-full shadow-glow md:bottom-6"
+      className="fixed bottom-28 right-4 z-40 h-11 w-11 rounded-full shadow-glow md:bottom-6"
       size="icon"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Back to top"

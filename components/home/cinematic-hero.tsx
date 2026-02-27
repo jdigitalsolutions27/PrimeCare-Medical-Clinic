@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 
@@ -6,12 +5,21 @@ import { business } from "@/data/business";
 import { images } from "@/data/images";
 import { Button } from "@/components/ui/button";
 import { AnimatedOrbs } from "@/components/shared/animated-orbs";
+import { ImageWithFallback } from "@/components/shared/image-with-fallback";
 
 export function CinematicHero() {
   return (
     <section className="relative overflow-hidden border-b">
       <div className="absolute inset-0">
-        <Image src={images.hero} alt="PrimeCare clinic environment" fill priority className="object-cover" />
+        <ImageWithFallback
+          src={images.hero}
+          alt="PrimeCare clinic environment"
+          fill
+          priority
+          className="object-cover"
+          fallbackLabel="PrimeCare"
+          fallbackClassName="bg-gradient-to-br from-slate-900 to-cyan-900"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-teal-950/50" />
       </div>
       <AnimatedOrbs className="opacity-80" />

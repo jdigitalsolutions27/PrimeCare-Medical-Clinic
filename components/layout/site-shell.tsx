@@ -9,7 +9,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <TopInfoBar />
       <Navbar />
-      <main className="overflow-x-hidden pb-24 md:pb-0">{children}</main>
+      <main className="overflow-x-hidden pb-28 md:pb-0">{children}</main>
       <Footer />
       <MobileCtaBar />
       <BackToTop />

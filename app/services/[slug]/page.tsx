@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { buildMetadata } from "@/lib/metadata";
+import { ImageWithFallback } from "@/components/shared/image-with-fallback";
 
 type ServiceDetailPageProps = {
   params: {
@@ -55,7 +55,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           </Button>
         </div>
         <div className="relative min-h-[320px] overflow-hidden rounded-3xl border">
-          <Image src={service.image} alt={service.name} fill className="object-cover" />
+          <ImageWithFallback src={service.image} alt={service.name} fill className="object-cover" fallbackLabel={service.name} />
         </div>
       </div>
 

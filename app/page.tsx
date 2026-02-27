@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 import { CinematicHero } from "@/components/home/cinematic-hero";
@@ -25,6 +24,7 @@ import { pricing } from "@/data/pricing";
 import { testimonials } from "@/data/testimonials";
 import { buildMetadata } from "@/lib/metadata";
 import { clinicJsonLd, physicianJsonLd } from "@/lib/schema";
+import { ImageWithFallback } from "@/components/shared/image-with-fallback";
 
 export const metadata = buildMetadata({
   title: "Home",
@@ -48,7 +48,7 @@ export default function HomePage() {
       <CinematicHero />
       <TrustBar />
 
-      <section className="container relative z-10 -mt-8 md:-mt-12">
+      <section className="container relative z-10 mt-4 sm:mt-6 md:-mt-12">
         <QuickBookingWidget />
       </section>
 
@@ -208,7 +208,7 @@ export default function HomePage() {
         </div>
         <Card className="overflow-hidden transition-all duration-300 hover:shadow-soft">
           <div className="relative h-64">
-            <Image src={images.mapPreview} alt="Clinic map preview" fill className="object-cover" />
+            <ImageWithFallback src={images.mapPreview} alt="Clinic map preview" fill className="object-cover" fallbackLabel="PrimeCare Map" />
           </div>
           <CardContent className="space-y-3 p-6">
             <h3 className="text-xl font-semibold">Visit us in person</h3>

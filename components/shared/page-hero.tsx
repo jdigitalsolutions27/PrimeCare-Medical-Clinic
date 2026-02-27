@@ -1,6 +1,5 @@
-import Image from "next/image";
-
 import { AnimatedOrbs } from "@/components/shared/animated-orbs";
+import { ImageWithFallback } from "@/components/shared/image-with-fallback";
 
 export function PageHero({
   title,
@@ -14,7 +13,14 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden border-b">
       <div className="absolute inset-0">
-        <Image src={image} alt={title} fill className="object-cover" />
+        <ImageWithFallback
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+          fallbackLabel={title}
+          fallbackClassName="bg-gradient-to-br from-slate-900 to-cyan-900"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-900/65 to-cyan-900/55" />
       </div>
       <AnimatedOrbs className="opacity-60" />
