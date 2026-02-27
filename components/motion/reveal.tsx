@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function Reveal({
   children,
@@ -13,6 +14,29 @@ export function Reveal({
   y?: number;
   className?: string;
 }) {
+  const prefersReducedMotion = useReducedMotion();
+  const [disableReveal, setDisableReveal] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const update = () => setDisableReveal(Boolean(prefersReducedMotion) || mediaQuery.matches);
+    update();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", update);
+      return () => mediaQuery.removeEventListener("change", update);
+    }
+
+    mediaQuery.addListener(update);
+    return () => mediaQuery.removeListener(update);
+  }, [prefersReducedMotion]);
+
+  if (disableReveal) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
